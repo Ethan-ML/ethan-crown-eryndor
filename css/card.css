@@ -1,0 +1,613 @@
+/* ========================================
+   VARIABLES
+======================================== */
+
+:root {
+    --dark-blue: #010819;
+    --medium-blue: #031b42;
+    --light-blue: #77baff;
+    --electric-blue: #347dff;
+
+    --silver: #dce6f7;
+    --silver-dark: #8390a8;
+
+    --white: #f7f9ff;
+    --secondary-text: #d2daec;
+
+    --title-font: "Cinzel", serif;
+    --body-font: "Cormorant Garamond", serif;
+}
+
+
+/* ========================================
+   REINICIO
+======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    font-family: var(--body-font);
+    color: var(--white);
+
+    background-image:
+        linear-gradient(
+            rgba(0, 4, 16, 0.22),
+            rgba(0, 4, 16, 0.42)
+        ),
+        url("../img/fcard.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+/* ========================================
+   CONTENEDOR DE LA PÁGINA
+======================================== */
+
+.page-container {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding: 55px 20px;
+}
+
+/* ========================================
+   TARJETA COMPLETA RESPONSIVE Y PROPORCIONAL
+======================================== */
+
+.profile-card {
+    width: min(720px, 100%);
+    aspect-ratio: 2 / 3;
+
+    position: relative;
+    overflow: hidden;
+
+    /*
+       Permite que las unidades cqw se calculen
+       según el ancho de esta tarjeta.
+    */
+    container-type: inline-size;
+
+    filter:
+        drop-shadow(0 3.5cqw 6cqw rgba(0, 0, 0, 0.8))
+        drop-shadow(0 0 3cqw rgba(45, 104, 255, 0.25));
+}
+
+
+/* ========================================
+   FONDO INTERIOR DE LA TARJETA
+======================================== */
+
+.card-background {
+    position: absolute;
+
+    /*
+       Orden:
+       arriba | derecha | abajo | izquierda
+    */
+    inset: 3.8% 12% 4% 12%;
+
+    border-radius: 4.5%;
+
+    background:
+        radial-gradient(
+            circle at 50% 15%,
+            rgba(35, 92, 193, 0.22),
+            transparent 28%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(2, 13, 38, 0.97),
+            rgba(1, 9, 28, 0.98)
+        );
+
+    box-shadow:
+        inset 0 0 8cqw rgba(34, 94, 210, 0.12);
+
+    z-index: 1;
+    overflow: hidden;
+}
+
+
+/* ========================================
+   MARCO METÁLICO
+======================================== */
+
+.metal-frame {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+    object-fit: fill;
+
+    z-index: 20;
+    pointer-events: none;
+    user-select: none;
+}
+
+
+/* ========================================
+   FOTO DE PERFIL
+======================================== */
+
+.profile-picture-container {
+    position: absolute;
+
+    top: 7.2%;
+    left: 50%;
+
+    width: 42%;
+    aspect-ratio: 1;
+
+    transform: translateX(-50%);
+
+    overflow: hidden;
+    border-radius: 50%;
+
+    background: #020b21;
+
+    box-shadow:
+        0 0 4cqw rgba(54, 121, 255, 0.5),
+        inset 0 0 3cqw rgba(29, 78, 180, 0.5);
+
+    z-index: 3;
+}
+
+.profile-picture {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+    object-position: center;
+
+    border-radius: 50%;
+}
+
+
+/* ========================================
+   CONTENIDO GENERAL
+======================================== */
+
+.card-content {
+    position: absolute;
+    margin: 3rem;
+    top: 33%;
+    left: 13%;
+    right: 13%;
+    bottom: 7%;
+
+    z-index: 8;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+}
+
+
+/* ========================================
+   ENCABEZADO
+======================================== */
+
+.profile-header {
+    flex-shrink: 0;
+    text-align: center;
+}
+
+.small-crown {
+    display: block;
+
+    margin-bottom: -0.5cqw;
+
+    font-size: 3.7cqw;
+    line-height: 1;
+
+    color: #dce6f7;
+
+    text-shadow:
+        0 0 1cqw #347dff,
+        0 0 2cqw rgba(55, 123, 255, 0.65);
+}
+
+.profile-header h1 {
+    margin: 0;
+
+    font-family: "Cinzel", serif;
+    font-size: 7.4cqw;
+    font-weight: 600;
+    line-height: 1.02;
+    letter-spacing: 0.18cqw;
+
+    color: transparent;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 5%,
+            #dce5f4 28%,
+            #7c8aa3 53%,
+            #ffffff 72%,
+            #65728b 100%
+        );
+
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    filter:
+        drop-shadow(0 0.4cqw 0.15cqw rgba(0, 0, 0, 0.9))
+        drop-shadow(0 0 1cqw rgba(65, 125, 255, 0.45));
+}
+
+
+/* Línea debajo del nombre */
+
+.title-decoration {
+    width: 74%;
+
+    display: flex;
+    align-items: center;
+    gap: 1.3cqw;
+
+    margin: 1.5cqw auto;
+}
+
+.title-decoration span {
+    flex: 1;
+    height: 0.12cqw;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #dce6f7,
+            transparent
+        );
+}
+
+.title-decoration i {
+    font-size: 1.7cqw;
+    font-style: normal;
+
+    color: #77baff;
+
+    text-shadow:
+        0 0 1.2cqw #347dff;
+}
+
+
+/* Descripción */
+
+.profile-description {
+    width: 94%;
+    max-width: none;
+
+    margin: 0 auto;
+
+    font-size: 2.55cqw;
+    line-height: 1.22;
+    font-weight: 500;
+
+    color: #d2daec;
+
+    text-shadow:
+        0 0.3cqw 0.5cqw rgba(0, 0, 0, 0.65);
+}
+
+
+/* ========================================
+   SECCIÓN DE LINKS
+======================================== */
+
+.links-section {
+    flex-shrink: 0;
+
+    margin-top: 2cqw;
+}
+
+
+/* Títulos Links y About me */
+
+.section-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 0.9cqw;
+
+    margin-bottom: 1.5cqw;
+}
+
+.section-title span {
+    width: 7cqw;
+    height: 0.12cqw;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #dce6f7,
+            transparent
+        );
+}
+
+.section-title i {
+    font-size: 1.25cqw;
+    font-style: normal;
+
+    color: #77baff;
+
+    text-shadow:
+        0 0 1cqw #347dff;
+}
+
+.section-title h2 {
+    margin: 0;
+
+    font-family: "Cinzel", serif;
+    font-size: 3.3cqw;
+    font-weight: 500;
+    line-height: 1;
+
+    white-space: nowrap;
+
+    color: #dce6f7;
+}
+
+
+/* ========================================
+   BOTONES
+======================================== */
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+
+    gap: 1.1cqw;
+}
+
+.social-button {
+    width: 100%;
+    height: 6.3cqw;
+    min-height: 0;
+
+    display: grid;
+    grid-template-columns: 5.2cqw 1fr 3.2cqw;
+    align-items: center;
+
+    gap: 0.8cqw;
+
+    padding: 0.5cqw 2cqw;
+
+    position: relative;
+    overflow: hidden;
+
+    border: 0.14cqw solid rgba(211, 224, 247, 0.78);
+    border-radius: 999px;
+
+    color: #f7f9ff;
+    text-decoration: none;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(2, 12, 35, 0.98),
+            rgba(7, 34, 79, 0.96),
+            rgba(2, 12, 35, 0.98)
+        );
+
+    box-shadow:
+        inset 0 0 2cqw rgba(66, 125, 236, 0.12),
+        0 0.7cqw 1.5cqw rgba(0, 0, 0, 0.35);
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.social-button::before {
+    content: "";
+    position: absolute;
+    inset: 0.4cqw;
+
+    border: 0.1cqw solid rgba(137, 165, 218, 0.2);
+    border-radius: inherit;
+
+    pointer-events: none;
+}
+
+.social-button::after {
+    content: "";
+    position: absolute;
+
+    top: 0;
+    left: -130%;
+
+    width: 60%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.17),
+            transparent
+        );
+
+    transform: skewX(-20deg);
+    transition: left 0.65s ease;
+}
+
+.social-button:hover {
+    transform: translateY(-0.35cqw);
+
+    border-color: #ffffff;
+
+    box-shadow:
+        0 0 2cqw rgba(48, 113, 255, 0.55),
+        0 1cqw 2.2cqw rgba(0, 0, 0, 0.4);
+}
+
+.social-button:hover::after {
+    left: 150%;
+}
+
+.social-button:focus-visible {
+    outline: 0.4cqw solid #77baff;
+    outline-offset: 0.4cqw;
+}
+
+
+/* ========================================
+   ICONOS DE LOS BOTONES
+======================================== */
+
+.social-icon {
+    width: 4.7cqw;
+    height: 4.7cqw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+    z-index: 3;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 25%,
+            rgba(72, 142, 255, 0.38),
+            rgba(1, 10, 30, 0.98)
+        );
+
+    box-shadow:
+        inset 0 0 1.4cqw rgba(79, 139, 255, 0.18);
+
+    font-size: 2.35cqw;
+}
+
+.social-name {
+    position: relative;
+    z-index: 3;
+    overflow: hidden;
+    font-size: 3.75cqw;
+    font-weight: 600;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.social-star {
+    position: relative;
+    z-index: 3;
+
+    font-size: 1.8cqw;
+    text-align: center;
+
+    color: #77baff;
+
+    text-shadow:
+        0 0 1cqw #347dff,
+        0 0 2cqw rgba(50, 115, 255, 0.75);
+
+    transition: transform 0.3s ease;
+}
+
+.social-button:hover .social-star {
+    transform: rotate(90deg) scale(1.2);
+}
+
+.janitor-icon {
+    font-family: "Cinzel", serif;
+    font-weight: 700;
+}
+
+.kofi-icon {
+    color: #ffffff;
+}
+
+.instagram-icon {
+    color: #ff93ca;
+}
+
+.tiktok-icon {
+    color: #ffffff;
+}
+
+.youtube-icon {
+    color: #ff4d59;
+}
+
+.eryndor-icon {
+    overflow: hidden;
+}
+
+.eryndor-icon img {
+    width: 75%;
+    height: 75%;
+
+    display: block;
+
+    object-fit: contain;
+}
+
+.eryndor-icon img {
+    width: 85%;
+    height: 85%;
+}
+
+
+/* ========================================
+   PÁGINA
+======================================== */
+
+.page-container {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding: clamp(8px, 4vw, 55px)
+             clamp(6px, 2vw, 20px);
+}
+
+
+/*
+   En celular solamente se elimina el fondo fijo.
+   No se cambian letras, posiciones ni botones,
+   porque ahora todo escala automáticamente.
+*/
+
+@media screen and (max-width: 540px) {
+
+    body {
+        background-attachment: scroll;
+    }
+
+}

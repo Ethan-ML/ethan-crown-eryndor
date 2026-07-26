@@ -1,0 +1,398 @@
+/*==========================
+GENERAL
+==========================*/
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:url("../img/fondo1.jpg") center/cover fixed;
+    color:white;
+    font-family:"Cormorant Garamond", serif;
+
+}
+
+/* Oscurece el fondo */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:rgba(5,8,18,.70);
+    z-index:-1;
+}
+
+/* NAVBAR */
+
+header{
+    position:fixed;
+    width:100%;
+    top:0;
+    left:0;
+    z-index:1000;
+}
+
+.navbar{
+    width:100%;
+    max-width:1490px;
+    height:90px;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    background:rgba(15,18,40,.60);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.logo img{
+    width:194px;
+}
+
+/* MENU */
+
+nav{
+    display:flex;
+    gap:35px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    font-family:"Cinzel";
+    letter-spacing:2px;
+    transition:.35s;
+    position:relative;
+}
+
+nav a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-8px;
+    width:0%;
+    height:2px;
+    background:#7ea8ff;
+    transition:.35s;
+}
+
+nav a:hover{
+    color:#9dbbff;
+}
+
+nav a:hover::after{
+    width:100%;
+}
+
+/* HERO */
+
+.hero{
+    display:flex;
+    justify-content:center;
+    padding:60px;
+}
+
+footer{
+    text-align:center;
+    padding:35px;
+    color:#fffefe;
+}
+
+.section p{
+line-height:2;
+font-size:1.15rem;
+color:#ddd7ef;
+margin-bottom: 23px;
+}
+
+
+/*==========================
+GRID
+==========================*/
+
+.character-grid{
+    width:89%;
+    max-width:1600px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:30px;
+    padding-top: 9%;
+}
+
+/*==========================
+CARD
+==========================*/
+
+.card{
+    position:relative;
+    overflow:hidden;
+    border-radius:18px;
+    border:4px solid #256dff;
+    background:#111;
+    cursor:pointer;
+    transition:.35s;
+}
+
+.card img{
+    width:100%;
+    aspect-ratio:3/5;
+    object-fit:cover;
+    transition:.45s;
+    display:block;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    border-color:#66a3ff;
+    box-shadow:
+        0 0 18px #256dff,
+        0 0 45px rgba(40,110,255,.45);
+}
+
+.card:hover img{
+    transform:scale(1.08);
+}
+
+.card-info{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:100%;
+    padding:18px;
+    background:linear-gradient(
+        transparent,
+        rgba(0,0,0,.92));
+    opacity:0;
+    transition:.35s;
+}
+
+.card:hover .card-info{
+    opacity:1;
+}
+
+.card-info h2{
+    font-family:"Cinzel";
+    margin-bottom:8px;
+}
+
+.card-info span{
+    display:block;
+    color:#9fb8ff;
+    margin-bottom:18px;
+}
+
+.card-info a{
+    display:inline-block;
+    padding:10px 24px;
+    text-decoration:none;
+    color:white;
+    border:1px solid #6e8cff;
+    border-radius:8px;
+    transition:.3s;
+}
+
+.card-info a:hover{
+    background:#4d6eff;
+}
+
+footer{
+    text-align:center;
+    padding:35px;
+    padding-top: 9%;
+    color:#fffefe;
+}
+
+/*================================================
+RESPONSIVE — PERSONAJES
+================================================*/
+
+@media screen and (max-width:1200px){
+
+    
+    .navbar{
+        width:100%;
+        max-width:none;
+        min-height:86px;
+        height:auto;
+        padding:12px 24px;
+        justify-content:space-between;
+        gap:20px;
+    }
+
+    .logo img{
+        width:155px;
+        height:auto;
+        margin-top:0;
+    }
+
+    nav{
+        gap:18px;
+        flex-wrap:wrap;
+        justify-content:flex-end;
+    }
+
+    nav a{
+        font-size:.78rem;
+        letter-spacing:1.3px;
+    }
+
+    .character-grid{
+        width:92%;
+        grid-template-columns:repeat(3, minmax(0,1fr));
+        gap:24px;
+        padding-top:110px;
+    }
+
+    .card-info h2{
+        font-size:1.35rem;
+    }
+
+    .card-info span{
+        margin-bottom:14px;
+    }
+}
+
+@media screen and (max-width:800px){
+
+    body{
+        overflow-x:hidden;
+    }
+
+    .navbar{
+        width:100%;
+        max-width:none;
+        min-height:0;
+        height:auto;
+        padding:10px 12px 12px;
+        flex-direction:column;
+        justify-content:center;
+        gap:8px;
+        border-left:0;
+        border-right:0;
+    }
+
+    .logo{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+
+    .logo img{
+        width:105px;
+        height:auto;
+        margin:0;
+    }
+
+    nav{
+        width:100%;
+        display:grid;
+        grid-template-columns:repeat(3, minmax(0, 1fr));
+        gap:8px 7px;
+        justify-content:stretch;
+    }
+
+    nav a{
+        padding:5px 2px;
+        font-size:.62rem;
+        line-height:1.25;
+        letter-spacing:.7px;
+        text-align:center;
+        overflow-wrap:anywhere;
+    }
+
+    nav a::after{
+        bottom:0;
+        height:1px;
+    }
+
+    .character-grid{
+        width:92%;
+        grid-template-columns:repeat(2, minmax(0,1fr));
+        gap:18px;
+        padding-top:110px;
+    }
+
+    .card{
+        border-width:3px;
+        border-radius:14px;
+    }
+
+    .card-info{
+        padding:15px;
+        opacity:1;
+        background:linear-gradient(transparent, rgba(0,0,0,.95));
+    }
+
+    .card-info h2{
+        font-size:1.15rem;
+        margin-bottom:5px;
+    }
+
+    .card-info span{
+        font-size:.9rem;
+        margin-bottom:12px;
+    }
+
+    .card-info a{
+        padding:8px 16px;
+        font-size:.85rem;
+    }
+
+    footer{
+        padding:50px 15px 25px;
+        font-size:.85rem;
+    }
+}
+
+@media screen and (max-width:500px){
+
+    .navbar{
+        padding-inline:8px;
+    }
+
+    .logo img{
+        width:92px;
+    }
+
+    nav{
+        gap:6px 8px;
+    }
+
+    nav a{
+        font-size:.61rem;
+    }
+
+    .character-grid{
+        width:88%;
+        max-width:390px;
+        grid-template-columns:1fr;
+        gap:22px;
+        padding-top:110px;
+    }
+
+    .card{
+        width:100%;
+        max-width:340px;
+        margin-inline:auto;
+    }
+
+    .card-info{
+        padding:18px;
+    }
+
+    .card-info h2{
+        font-size:1.35rem;
+    }
+
+    .card-info span{
+        font-size:1rem;
+    }
+
+    .card-info a{
+        padding:9px 18px;
+        font-size:.9rem;
+    }
+}
