@@ -14,7 +14,7 @@ body{
 .hero{
     position:relative;
     width:100%;
-    height:100vh;
+    height:110vh;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -107,6 +107,59 @@ nav a:hover::after{
     color:#d5d9ff;
 }
 
+.glow-subtitle {
+    margin: 0;
+
+    font-family: "Cinzel", serif;
+    font-size: clamp(1.5rem, 4vw, 2.6rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0.08em;
+    text-align: center;
+
+    color: transparent;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f5ffff 0%,
+            #aefcff 18%,
+            #3ee8f5 42%,
+            #168dff 67%,
+            #bafcff 82%,
+            #2c78ff 100%
+        );
+
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    filter:
+        drop-shadow(0 0 2px rgba(230, 255, 255, 0.95))
+        drop-shadow(0 0 6px rgba(54, 233, 255, 0.9))
+        drop-shadow(0 0 13px rgba(23, 121, 255, 0.75));
+
+    animation: subtitleGlow 2.8s ease-in-out infinite;
+}
+
+@keyframes subtitleGlow {
+    0%,
+    100% {
+        filter:
+            drop-shadow(0 0 2px rgba(230, 255, 255, 0.85))
+            drop-shadow(0 0 6px rgba(54, 233, 255, 0.75))
+            drop-shadow(0 0 12px rgba(23, 121, 255, 0.6));
+    }
+
+    50% {
+        filter:
+            drop-shadow(0 0 3px rgba(255, 255, 255, 1))
+            drop-shadow(0 0 9px rgba(72, 242, 255, 1))
+            drop-shadow(0 0 19px rgba(26, 112, 255, 0.95));
+    }
+}
+
 /* BOTON */
 
 .enter-btn{
@@ -137,13 +190,6 @@ nav a:hover::after{
     0 0 25px #5f84ff,
     0 0 60px #5f84ff;
 }
-
-
-
-.hero p{
-font-size:1.3rem;
-}
-
 
 /* ===========================
    PARTICULAS MAGICAS
