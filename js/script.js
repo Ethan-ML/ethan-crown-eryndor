@@ -22,7 +22,7 @@ regions.forEach(region => {
 
         if (label) {
 
-            label.style.color = "#00000098";
+            label.style.color = "#f3f3f398";
 
             label.style.textShadow =
                 "0 0 10px #FFD700, 0 0 20px #6d5d05, 0 0 40px #FFD700";
