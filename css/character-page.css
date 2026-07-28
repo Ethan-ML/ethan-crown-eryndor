@@ -51,9 +51,8 @@ PERSONAJE
 /* Imagen */
 
 .character-image img{
-    width:100%;
+    width:90%;
     border-radius:20px;
-    border:3px solid #4a74ff;
     box-shadow:
         0 0 25px rgba(74,116,255,.4);
 }
