@@ -9,7 +9,7 @@ GENERAL
 }
 
 body{
-    background:url("../img/fondo1.jpg") center/cover fixed;
+    background:url("../img/fondo3.jpg") center/cover fixed;
     color:white;
     font-family:"Cormorant Garamond", serif;
 
@@ -123,81 +123,301 @@ GRID
 }
 
 /*==========================
-CARD
+CARD DE PERSONAJES
 ==========================*/
 
-.card{
-    position:relative;
-    overflow:hidden;
-    border-radius:18px;
-    border:4px solid #124f72;
-    background:#111;
-    cursor:pointer;
-    transition:.35s;
+.card {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 5;
+    overflow: hidden;
+    border: none;
+    border-radius: 18px;
+    cursor: pointer;
+    isolation: isolate;
+    filter:
+        drop-shadow(0 10px 18px rgba(0, 0, 0, 0.55))
+        drop-shadow(0 0 8px rgba(38, 104, 255, 0.18));
+
+    transition:
+        transform 0.4s ease,
+        filter 0.4s ease;
 }
 
-.card img{
-    width:100%;
-    aspect-ratio:3/5;
-    object-fit:cover;
-    transition:.45s;
-    display:block;
+
+/* Imagen del personaje */
+
+.card > img {
+    position: absolute;
+
+    /*
+       Este margen evita que la imagen tape
+       las partes metálicas del marco.
+    */
+    inset: 4.5% 5%;
+
+    width: 90%;
+    height: 91%;
+
+    display: block;
+
+    object-fit: cover;
+    object-position: center top;
+
+    border-radius: 12px;
+
+    z-index: 1;
+
+    transition:
+        transform 0.55s ease,
+        filter 0.45s ease;
 }
 
-.card:hover{
-    transform:translateY(-10px);
-    border-color:#66a3ff;
+
+/* Oscurecimiento inferior para leer el texto */
+
+.card::before {
+    content: "";
+
+    position: absolute;
+    inset: 4.5% 5%;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent 48%,
+            rgba(1, 5, 18, 0.35) 67%,
+            rgba(1, 5, 18, 0.97) 100%
+        );
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+
+/* Marco PNG encima de la tarjeta */
+
+.card::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-image: url("../img/martext.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+
+    z-index: 4;
+
+    pointer-events: none;
+    user-select: none;
+
+    filter:
+        drop-shadow(0 0 3px rgba(223, 238, 255, 0.35))
+        drop-shadow(0 0 8px rgba(53, 116, 255, 0.22));
+
+    transition: filter 0.4s ease;
+}
+
+
+/* Animación al pasar el cursor */
+
+.card:hover {
+    transform:
+        translateY(-10px)
+        scale(1.015);
+
+    filter:
+        drop-shadow(0 18px 25px rgba(0, 0, 0, 0.65))
+        drop-shadow(0 0 15px rgba(47, 117, 255, 0.48));
+}
+
+.card:hover::after {
+    filter:
+        drop-shadow(0 0 4px rgba(240, 248, 255, 0.7))
+        drop-shadow(0 0 15px rgba(54, 128, 255, 0.65));
+}
+
+.card:hover > img {
+    transform: scale(1.07);
+
+    filter:
+        brightness(1.06)
+        contrast(1.03);
+}
+
+
+/*==========================
+INFORMACIÓN DEL PERSONAJE
+==========================*/
+
+.card-info {
+    position: absolute;
+
+    left: 10%;
+    right: 10%;
+    bottom: 8%;
+
+    width: auto;
+
+    padding: 20px 12px 8px;
+
+    z-index: 3;
+
+    text-align: center;
+
+    opacity: 0;
+    transform: translateY(18px);
+
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease;
+}
+
+.card:hover .card-info {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Nombre */
+
+.card-info h2 {
+    margin: 0 0 5px;
+
+    font-family: "Cinzel", serif;
+    font-size: clamp(1.2rem, 2vw, 1.65rem);
+    font-weight: 700;
+    letter-spacing: 1px;
+
+    color: transparent;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 5%,
+            #dce6f6 35%,
+            #8494af 57%,
+            #ffffff 78%,
+            #71809a 100%
+        );
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    filter:
+        drop-shadow(0 2px 1px rgba(0, 0, 0, 0.9))
+        drop-shadow(0 0 6px rgba(76, 136, 255, 0.35));
+}
+
+
+/* Especie o título */
+
+.card-info span {
+    display: block;
+
+    margin-bottom: 12px;
+
+    color: #a9c6ff;
+
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+
+    text-shadow:
+        0 0 6px rgba(60, 128, 255, 0.5);
+}
+
+
+/* Botón */
+
+.card-info a {
+    display: inline-block;
+
+    padding: 8px 19px;
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+
+    border:
+        1px solid rgba(144, 190, 255, 0.9);
+
+    border-radius: 999px;
+
+    color: #ffffff;
+    text-decoration: none;
+
+    font-family: "Cinzel", serif;
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(36, 69, 146, 0.78),
+            rgba(7, 21, 62, 0.9)
+        );
+
     box-shadow:
-        0 0 18px #256dff,
-        0 0 45px rgba(40,110,255,.45);
+        inset 0 0 10px rgba(86, 147, 255, 0.12),
+        0 0 8px rgba(58, 119, 255, 0.25);
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
-.card:hover img{
-    transform:scale(1.08);
+.card-info a::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: -140%;
+
+    width: 65%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent
+        );
+
+    transform: skewX(-20deg);
+
+    transition: left 0.6s ease;
 }
 
-.card-info{
-    position:absolute;
-    left:0;
-    bottom:0;
-    width:100%;
-    padding:18px;
-    background:linear-gradient(
-        transparent,
-        rgba(0,0,0,.92));
-    opacity:0;
-    transition:.35s;
+.card-info a:hover {
+    transform: translateY(-2px);
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(70, 121, 230, 0.9),
+            rgba(20, 49, 121, 0.95)
+        );
+
+    box-shadow:
+        0 0 13px rgba(72, 135, 255, 0.7),
+        inset 0 0 10px rgba(119, 177, 255, 0.16);
 }
 
-.card:hover .card-info{
-    opacity:1;
+.card-info a:hover::before {
+    left: 150%;
 }
-
-.card-info h2{
-    font-family:"Cinzel";
-    margin-bottom:8px;
-}
-
-.card-info span{
-    display:block;
-    color:#9fb8ff;
-    margin-bottom:18px;
-}
-
-.card-info a{
-    display:inline-block;
-    padding:10px 24px;
-    text-decoration:none;
-    color:white;
-    border:1px solid #6e8cff;
-    border-radius:8px;
-    transition:.3s;
-}
-
-.card-info a:hover{
-    background:#4d6eff;
-}
-
 footer{
     text-align:center;
     padding:35px;
@@ -336,9 +556,26 @@ RESPONSIVE — PERSONAJES
         margin-bottom:12px;
     }
 
-    .card-info a{
-        padding:8px 16px;
-        font-size:.85rem;
+    .card-info a {
+    display: inline-block;
+
+    padding: 8px 19px;
+    margin-bottom: 1.4rem;
+    position: relative;
+    overflow: hidden;
+
+    border:
+        1px solid rgba(144, 190, 255, 0.9);
+
+    border-radius: 999px;
+
+    color: #ffffff;
+    text-decoration: none;
+
+    font-family: "Cinzel", serif;
+    font-size: 0.96rem;
+    font-weight: 600;
+    letter-spacing: 0.8px;
     }
 
     footer{

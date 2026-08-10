@@ -208,8 +208,8 @@ text-shadow:
 }
 
 .section p{
-line-height:2;
-font-size:1.15rem;
+line-height:1.4;
+font-size:1.45rem;
 color:#d5e9eb;
 }
 
@@ -534,8 +534,7 @@ border-top:1px solid rgba(77, 183, 190, .12);
     }
 
     .section p {
-        font-size: 1.05rem;
-        line-height: 1.8;
+        font-size: 1.35rem;
     }
 
     .info-grid {
@@ -618,8 +617,7 @@ border-top:1px solid rgba(77, 183, 190, .12);
     }
 
     .section p {
-        font-size: 1rem;
-        line-height: 1.75;
+        font-size: 1.34rem;
     }
 
     .info-grid {
@@ -714,8 +712,7 @@ border-top:1px solid rgba(77, 183, 190, .12);
     }
 
     .section p {
-        font-size: 0.96rem;
-        line-height: 1.7;
+        font-size: 1.2rem;
     }
 
     .info-box {
