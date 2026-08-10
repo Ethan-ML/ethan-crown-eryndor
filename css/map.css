@@ -427,9 +427,6 @@ footer{
 
     .label{
         font-size:clamp(5px, 1.83cqw, 8px);
-        text-shadow:
-            0 0 2px #000,
-            0 0 5px #000;
     }
 
     .gemora-label{
