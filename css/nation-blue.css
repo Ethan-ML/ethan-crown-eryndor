@@ -18,7 +18,7 @@ body.leontrex{
 background:
 linear-gradient(rgba(8, 18, 38, 0.158),
 rgba(8,18,38,.90)),
-url("../img/leontrex/pl3.png");
+url("../img/leontrex/l1.png");
 background-size:cover;
 background-position:center;
 background-attachment:fixed;
@@ -257,6 +257,8 @@ gap:25px;
 width:100%;
 border-radius:18px;
 transition:.35s;
+aspect-ratio: 16 / 9;
+object-fit: cover;
 }
 
 .gallery img:hover{
@@ -265,6 +267,18 @@ transform:scale(1.03);
 
 img {
 width: 99%;
+}
+
+/*==================================
+FOOTER
+==================================*/
+
+footer{
+text-align:center;
+padding:35px;
+color:hsl(212, 71%, 63%);
+background: rgb(15 18 40 / 24%);
+border-top:1px solid rgba(198, 147, 76, .12);
 }
 
 /* ==========================================================
